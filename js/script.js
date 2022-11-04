@@ -29,43 +29,30 @@ function agregar() {
     celulares.push(celular);
     console.log(celulares);
 }
-function mostrarCatalogo(array) {
-    let arrayOrdenado = array;
+function mostrarCatalogo() {
     let criterio = prompt('Elegí la opcion en la forma que deseas ver el catalogo de celulares:\n1 - Marca de telefono ordenado(A a Z)\n2 - marca de telefono de Mayor a menor calificacion \n');
     switch (criterio) {
         case '1':
-            let nombreAscendente = arrayOrdenado.sort((a, b) => a.marca.localeCompare(b.marca));
-            crearStringResultado()
+            console.log(celulares.sort((a, b) => a.valoracion - b.valoracion));
+            break;
         case '2':
-            arrayOrdenado.sort((a, b) => a.anioDeFa.localeCompare(b.anioDeFa));
-            crearStringResultado()
+            console.log(celulares.sort((a, b) => a.anioDeFa < b.anioDeFa));
+            break;
         default:
             alert('No es un criterio válido, te mostraremos el catálogo sin ordenar');
-            crearStringResultado()
     }
 }
 
-function crearStringResultado(array) {
-    let info = '';
 
-    array.forEach(elemento => {
-        info += 'marca: ' + elemento.marca + '\nmodelo: ' + elemento.modelo + '\nAño de fabricacion: ' + elemento.anioDeFa + '\nmemoria ram: ' + elemento.memoriaRam + '\nmemoria interna de almacenamiento: ' + elemento.memoria + '\nValoración: ' + elemento.valoracion + ' puntos.\n\n'
-    });
-
-    return info;
-}
-
-
-let ingreso = prompt('¿Deseas Agregar un Celular o Ver el catalogo?\n1 - Agregar celular\n2 - ver catalogo');
+let ingreso = parseInt(prompt('¿Deseas Agregar un Celular o Ver el catalogo?\n1 - Agregar celular\n2 - ver catalogo'));
 
 switch (ingreso) {
-    case '1':
+    case 1:
         agregar();
         mostrarCatalogo();
         break;
-    case '2':
-        mostrarCatalogo();  
-        crearStringResultado();
+    case 2:
+        mostrarCatalogo();
         break;
 }
 
