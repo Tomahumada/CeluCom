@@ -1,75 +1,71 @@
 class Celular {
-
     constructor(marca, modelo, anioDeFa, memoriaRam, memoria, valoracion) {
-        this.titulo = marca;
-        this.autor = modelo;
-        this.anio = parseInt(anioDeFa);
-        this.genero = memoriaRam;
-        this.valoracion = parseInt(memoria);
-        this.id = valoracion;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anioDeFa = parseInt(anioDeFa);
+        this.memoriaRam = memoriaRam;
+        this.memoria = memoria;
+        this.valoracion = parseInt(valoracion);
     }
 }
 
 const celulares = [
-    new Celular('Samsung', 'S 22', 2022, '16 GB', '540 GB', 10),
+    new Celular('Samsung', 'S 22', 2022, '16 GB', '540', 10),
     new Celular('Iphone', '14', 2022, '16 GB', '1 TB', 9),
     new Celular('Xiaomi', 'Redmi 8', 2019, '4 GB', '128 GB', 8),
     new Celular('Samsung', 'A 12', 2019, '4 GB', '64 GB', 8),
     new Celular('Samsung', 'S 22 Flip', 2022, '12 GB', '1 TB', 10),
 ];
 
-let continuar = true;
+function agregar() {
+    marca = prompt('¿Cual es la marca del celular?');
+    modelo = prompt('¿Cual es el modelo del celular?');
+    anioDeFa = prompt('¿Cual es el año de fabricacion del celular?');
+    memoriaRam = prompt('¿Cual es la memoria Ram total del celular?');
+    memoria = prompt('¿Cual es la memoria interna del celular?');
+    valoracion = prompt('¿cual es la valoracion que tiene este celular?');
 
-while (continuar) {
-
-    let ingreso = prompt('Ingresa los datos del celular:\n-marca\n-modelo\n-año de fabricacion\n-memoria Ram\n-memoria\n-puntaje de 1 a 10\nseparados por un espacio. Ingresa X para finalizar');
-
-    if (ingreso.toUpperCase() == 'X'){
-        continuar = false;
-        break;
-    }
-
-    const datos = ingreso;
-    console.log(datos);
-
-    const celular = new Celular(celulares[0], celulares[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
-
-    celulares.push(celulares);
+    const celular = new Celular(marca, modelo, anioDeFa, memoriaRam, memoria, valoracion);
+    celulares.push(celular);
     console.log(celulares);
-
+}
+function mostrarCatalogo(array) {
+    let arrayOrdenado = array;
+    let criterio = prompt('Elegí la opcion en la forma que deseas ver el catalogo de celulares:\n1 - Marca de telefono ordenado(A a Z)\n2 - marca de telefono de Mayor a menor calificacion \n');
+    switch (criterio) {
+        case '1':
+            let nombreAscendente = arrayOrdenado.sort((a, b) => a.marca.localeCompare(b.marca));
+            crearStringResultado()
+        case '2':
+            arrayOrdenado.sort((a, b) => a.anioDeFa.localeCompare(b.anioDeFa));
+            crearStringResultado()
+        default:
+            alert('No es un criterio válido, te mostraremos el catálogo sin ordenar');
+            crearStringResultado()
+    }
 }
 
-let criterio = prompt('Elegí la opcion que deseas para ver que celular se adapta mejor a vos:\n1 - Marca de telefono ordenado(A a Z)\n2 - marca de telefono de Mayor a menor calificacion \n');
+function crearStringResultado(array) {
+    let info = '';
 
-    function ordenar(criterio, array) {
-        let arrayOrdenado = array.slice(0);
+    array.forEach(elemento => {
+        info += 'marca: ' + elemento.marca + '\nmodelo: ' + elemento.modelo + '\nAño de fabricacion: ' + elemento.anioDeFa + '\nmemoria ram: ' + elemento.memoriaRam + '\nmemoria interna de almacenamiento: ' + elemento.memoria + '\nValoración: ' + elemento.valoracion + ' puntos.\n\n'
+    });
 
-        switch (criterio) {
-            case '1':
-                let nombreAscendente = arrayOrdenado.sort((a, b) => a.titulo.localeCompare(b.titulo));
-                return nombreAscendente;
-                
-            case '2':
-                return arrayOrdenado.sort((a, b) => a.anio - b.anio);
-                
-            default:
-                alert('No es un criterio válido, te mostraremos el catálogo sin ordenar');
-                return arrayOrdenado;
-                break;
-        }
-    }
+    return info;
+}
 
-    function crearStringResultado(array) {
-        let info = '';
 
-        array.forEach(elemento => {
-            info += 'marca: ' + elemento.marca + '\nmodelo: ' + elemento.modelo + '\nAño de fabricacion: ' + elemento.anioDeFa +'\nmemoria ram: ' + elemento.memoriaRam +' gb'+ '\nmemoria interna de almacenamiento: ' + elemento.memoria +' gb'+'\nValoración: ' + elemento.valoracion + ' puntos.\n\n'
-        });
+let ingreso = prompt('¿Deseas Agregar un Celular o Ver el catalogo?\n1 - Agregar celular\n2 - ver catalogo');
 
-        return info;
-
-    }
-
-    alert(crearStringResultado(ordenar(criterio, celulares)));
-
+switch (ingreso) {
+    case '1':
+        agregar();
+        mostrarCatalogo();
+        break;
+    case '2':
+        mostrarCatalogo();  
+        crearStringResultado();
+        break;
+}
 
