@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+p{
+    font-size: 20px;
+    margin: 0 50px 30px 50px;
+}
+
+.title {
+    background: #0096c7;
+    padding: 15.43px 0px;
+    border-bottom: 4px solid black;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+
+button {
+    padding: 20px 35px;
+    font-size: 25px;
+    border-radius: 20px;
+}
+
+.ingresoDeCelulares {
+    background: #fee440;
+    padding: 218px 0 251px 0;
+    border-right: 3px solid black;
+}
+
+
+
+.catalogo {
+    background: #fee440;
+    padding: 218px 0 251px 0;
+}
+
+#buttonAgregar, #buttonCatalogo{
+    border: 5px solid black;
+    transition: all .2s;
+}
+
+#buttonCatalogo:hover, #buttonAgregar:hover {
+    background-color: lightblue;
+    box-shadow: 10px 10px 10px 3px #111;
+}

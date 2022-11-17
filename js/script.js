@@ -1,3 +1,15 @@
+
+const btnAgregar = document.getElementById('buttonAgregar'),
+    btncatalogo = document.getElementById('buttonCatalogo')
+
+
+
+
+
+
+
+let ingreso;
+
 class Celular {
     constructor(marca, modelo, anioDeFa, memoriaRam, memoria, valoracion) {
         this.marca = marca;
@@ -30,31 +42,21 @@ function agregar() {
     console.log(celulares);
 }
 function mostrarCatalogo() {
-    let criterio = prompt('Elegí la opcion en la forma que deseas ver el catalogo de celulares:\n1 - Marca de telefono ordenado(A a Z)\n2 - marca de telefono de Mayor a menor calificacion \n');
+    let criterio = confirm('Deseas ver el catalogo o no?');
     switch (criterio) {
-        case '1':
-            alert('Para ver el catalogo hace click en F12');
-            console.log(celulares.sort((a, b) => a.valoracion - b.valoracion));
+        case true:
+            let msg = '';
+            for (let celular of celulares) {
+                msg += `\nMarca: ${celular.marca}\nModelo: ${celular.modelo}\nCantidad de memoria interna: ${celular.memoria}\n `;
+            }
+            alert(msg);
             break;
-        case '2':
-            alert('Para ver el catalogo hace click en F12');
-            console.log(celulares.sort((a, b) => a.anioDeFa < b.anioDeFa));
-            break;
-        default:
-            alert('No es un criterio válido, te mostraremos el catálogo sin ordenar');
+        case false:
+            alert('ok cualquier consulta no dude en recargar la pagina');
             break;
     }
 }
 
-let ingreso = parseInt(prompt('¿Deseas Agregar un Celular o Ver el catalogo?\n1 - Agregar celular\n2 - ver catalogo'));
-
-switch (ingreso) {
-    case 1:
-        agregar();
-        mostrarCatalogo();
-        break;
-    case 2:
-        mostrarCatalogo();
-        break;
+btnAgregar.onclick=()=>{
+    agregar()
 }
-
