@@ -32,25 +32,39 @@ button {
     border-radius: 20px;
 }
 
-.ingresoDeCelulares {
+.ingresoDeCelulares, .catalogo {
     background: #fee440;
     padding: 218px 0 251px 0;
     border-right: 3px solid black;
 }
 
-
-
-.catalogo {
-    background: #fee440;
-    padding: 218px 0 251px 0;
-}
-
-#buttonAgregar, #buttonCatalogo{
-    border: 5px solid black;
+#botonAgregar, #botonCatalogo{
+    border: 3px solid black;
     transition: all .2s;
 }
 
-#buttonCatalogo:hover, #buttonAgregar:hover {
+#botonCatalogo:hover, #botonAgregar:hover {
     background-color: lightblue;
     box-shadow: 10px 10px 10px 3px #111;
+}
+
+@media(max-width:768px){
+    .container {
+        display: grid;
+        grid-template-columns:1fr;
+        grid-template-rows: 1fr 1fr;
+        text-align: center;
+    }
+    .ingresoDeCelulares, .catalogo {
+        background: #fee440;
+        padding: 80px 0 86px 0;
+        border-right: 3px solid black;
+        border-bottom: #111 3px solid;
+    }
+    button{
+        border: 4px solid black;
+    }
+    p{
+        font-size: 30px;
+    }
 }
