@@ -1,7 +1,7 @@
 
 const btnAgregar = document.getElementById('botonAgregar'),
-    btncatalogo = document.getElementById('botonCatalogo');
-
+    btncatalogo = document.getElementById('botonCatalogo'),
+    catalogo = document.getElementById('catalogo');
 let ingreso;
 
 class Celular {
@@ -36,44 +36,18 @@ function agregar() {
     console.log(celulares);
 }
 function mostrarCatalogo() {
-    let criterio = Swal.fire({
-        title: 'Deseas ver el catalogo o no ?',
-        icon: 'info',
-        iconColor: '#0096c7',
-        showCancelButton: true,
-        confirmButtonText: 'Confirmar',
-        cancelButtonText: 'Cancelar',
-        position: 'top-center',
-        backdrop: '#445566aa'
-    }).then((result)=>{
-    if(result.isConfirmed){
-        let msg = '';
-        for (let celular of celulares) {
-            msg += `\nMarca: ${celular.marca}\nModelo: ${celular.modelo}\nCantidad de memoria interna: ${celular.memoria}\n `;
-        }
-        Swal.fire({
-            title: `${msg}`,
-            icon: 'info',
-            iconColor: '#0096c7',
-            showCancelButton: true,
-            confirmButtonText: 'Confirmar',
-            cancelButtonText: 'Cancelar',
-            position: 'top-center',
-            backdrop: '#445566aa'
-        })
+    for (let celular of celulares) {
+        const card = document.createElement('div');
+
+        card.innerHTML = `\n\n\n<div>
+        <p>Marca: ${celular.marca}</p>
+        <p>Modelo: ${celular.modelo}</p> 
+        <p>Cantidad de memoria interna: ${celular.memoria}</p></div>`
+        catalogo.appendChild(card);
     }
-    else{
-        Swal.fire({
-            title: `Error`,
-            icon: 'error',
-            iconColor: '#0096c7',
-            confirmButtonText: 'Confirmar',
-            position: 'top-center',
-            backdrop: '#445566aa'
-    })
-    }
-})
+    
 }
+
 btnAgregar.onclick = () => {
     agregar();
 }
